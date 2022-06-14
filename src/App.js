@@ -1,9 +1,13 @@
 import "./App.css";
-
+import { Header } from "./Components/Header/Header";
+import { Routers } from "./Routers";
 function App() {
   return (
-    <div className='App'>
-      <h1>Hello World</h1>
+    <div className='app'>
+      <Header />
+      <div className='app-container'>
+        <Routers />
+      </div>
     </div>
   );
 }
