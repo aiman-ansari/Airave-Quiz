@@ -1,0 +1,6 @@
+.alert-container {
+  background-color: aqua;
+  padding: 1rem;
+  width: 20rem;
+  display: none;
+}
