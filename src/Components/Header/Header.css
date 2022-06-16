@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@1,700&family=Lobster&family=Mouse+Memoirs&family=Pacifico&family=Sacramento&display=swap");
+:root {
+  --text-accent-color: rgb(245, 9, 48);
+  --bg-header: rgb(235, 235, 235);
+  --bg-white: whitesmoke;
+  --text-gray-dark: rgb(56, 56, 56);
+}
+nav {
+  display: flex;
+  background-color: var(--bg-header);
+  height: 4rem;
+  align-items: center;
+  padding: 0 5rem 0 7rem;
+  opacity: 1;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  transition: 0.3s;
+}
+
+.image {
+  height: 70vh;
+  width: 100%;
+  overflow: hidden;
+}
+img {
+  height: 70vh;
+  width: 100%;
+  object-fit: fill;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+ul li {
+  padding: 0 1rem 0 1rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.search-input {
+  width: 30rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-white);
+  border-radius: 10px;
+  color: var(--text-white);
+}
+input::placeholder {
+  color: var(--text-gray);
+}
+.search-input {
+  color: var(--text-gray-dark);
+}
+.bold-text {
+  font-size: 1.1rem;
+}
+
+.nav-text {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  font-family: "Lobster", cursive;
+}
+.menu {
+  display: none;
+}
+
+.profile {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+.profile-content {
+  position: absolute;
+  visibility: hidden;
+  margin-right: 10rem;
+  margin-top: 2rem;
+  padding: 10px;
+}
+.profile:hover .profile-content {
+  visibility: visible;
+}
+@media screen and (max-width: 500px) {
+  .menu {
+    display: block;
+  }
+  nav {
+    padding: 0 0.9rem;
+    width: 100vw;
+  }
+  .search-input {
+    width: 8rem;
+  }
+  nav > div {
+    padding: 0;
+  }
+  .profile-content {
+    margin-right: 18rem;
+  }
+}

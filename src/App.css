@@ -1,0 +1,36 @@
+html {
+  background-color: #f9f9f9;
+}
+.app {
+  display: flex;
+  height: 100%;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+  padding: 1rem 7rem;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 14px;
+  }
+  .app {
+    padding: 0;
+  }
+  .app-container {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+    padding: 0;
+    position: relative;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
