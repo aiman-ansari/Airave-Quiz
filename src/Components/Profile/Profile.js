@@ -6,7 +6,6 @@ export const Profile = () => {
     state: { token, user, isAuthenticated },
     dispatch,
   } = useAuth();
-  console.log(token, user, isAuthenticated);
   const logout = () => {
     localStorage.clear();
     dispatch({

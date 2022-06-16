@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import { auth } from "../../firebase";
 import { updateProfile } from "firebase/auth";
-import { Alert } from "../../Components/Alert/Alert";
 import "./Auth.css";
 
 export const Login = () => {
@@ -29,9 +28,6 @@ export const Login = () => {
       setError(false);
       try {
         await handleLogin(email, password);
-        // setTimeout(() => {
-        //   // <Alert msg={email} />;
-        // }, 3000);
         navigate("/");
       } catch (err) {
         setError(true);
@@ -70,10 +66,11 @@ export const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className='text-danger mb-1'>{error === true ? message : ""}</div>
+        {error === true && <div class='alert alert-danger mb-1'>{message}</div>}
+
         <div className='btn-container'>
           <button
-            class='btn btn-primary  width-100'
+            class='btn btn-outline-primary  width-100'
             onClick={() => handleSubmit()}
           >
             Login
@@ -89,7 +86,9 @@ export const Login = () => {
           </div>
         </div>
       </div>
-      {/* <ToastContainer /> */}
+      <div className='login-image'>
+        <img src='/svg/Mobile login-pana.svg' />
+      </div>
     </div>
   );
 };

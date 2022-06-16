@@ -1,5 +1,3 @@
-import { Alert } from "../../Components/Alert/Alert";
-import { useAuth } from "../../Context/AuthContext";
 import { useQuiz } from "../../Context/QuizContext";
 import "./Home.css";
 export const Home = () => {
@@ -7,7 +5,6 @@ export const Home = () => {
 
   return (
     <div className='container'>
-      {/* <Alert /> */}
       <div className='bold-text'>All Categories</div>
       {quiz === undefined ? (
         <span>Loading...</span>

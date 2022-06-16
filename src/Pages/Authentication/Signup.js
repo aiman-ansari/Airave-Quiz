@@ -1,29 +1,34 @@
 import { useState } from "react";
-// import { ToastContainer } from "react-toastify";
 import { useAuth } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
-// import "react-toastify/dist/ReactToastify.css";
 import "./Auth.css";
 
 export const SignUp = () => {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { handleSingup, state, dispatch, userName } = useAuth();
-  const [error, setError] = useState("");
+  const { handleSingup } = useAuth();
+  const [message, setMessage] = useState();
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
-  console.log(state);
-  console.log("user", userName);
-  const handleSubmit = () => {
-    if (email && password && firstName) {
-      if (password.length >= 8) {
-        handleSingup(email, password, firstName);
-        navigate("/login");
+  const handleSubmit = async () => {
+    if (firstName && email && password) {
+      if (password.length > 6) {
+        setError(false);
+        try {
+          await handleSingup(email, password, firstName);
+          navigate("/login");
+        } catch (err) {
+          setError(true);
+          setMessage(err.message);
+        }
       } else {
-        setError("password should be greater than 8 characters");
+        setError(true);
+        setMessage("Password should be greater than 6 character");
       }
     } else {
-      setError("Please fill all the fields");
+      setError(true);
+      setMessage("Please fill all the fields");
     }
   };
 
@@ -32,10 +37,10 @@ export const SignUp = () => {
       <div class='form'>
         <span className='bold-text'>Sign up</span>
         <div class='input-with-icons '>
-          <i class='bi bi-envelope-fill input-icon'></i>
+          <i class='bi bi-person-fill input-icon'></i>
           <input
             type='text'
-            placeholder='Enter your firstName'
+            placeholder='Enter your name'
             class='icon-input'
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
@@ -61,10 +66,10 @@ export const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className='text-danger mb-1'>{error}</div>
+        {error === true && <div class='alert alert-danger mb-1'>{message}</div>}
         <div class='btn-container'>
           <button
-            class='btn btn-primary  width-100'
+            class='btn btn-outline-primary  width-100'
             onClick={() => handleSubmit()}
           >
             Signup
@@ -74,7 +79,9 @@ export const SignUp = () => {
           </div>
         </div>
       </div>
-      {/* <ToastContainer /> */}
+      <div className='login-image'>
+        <img src='/svg/Mobile login-cuate.svg' />
+      </div>
     </div>
   );
 };

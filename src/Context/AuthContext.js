@@ -6,7 +6,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { authReducer } from "../Reducer/authReducer";
-import { Alert } from "../Components/Alert/Alert";
 
 const initialState = {
   isAuthenticated: localStorage.getItem("token") ? true : false,
