@@ -1,0 +1,19 @@
+.rules-container {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  /* width: 30rem; */
+  border-radius: 20px;
+  box-shadow: 2px 1px 25px -6px rgb(88, 88, 88);
+}
+.rules-container span {
+  padding: 10px;
+}
+.rules {
+  display: flex;
+}
+.rules ul li {
+  padding: 1rem;
+  font-size: 1rem;
+}

@@ -1,0 +1,31 @@
+.quiz-container {
+  width: 35rem;
+  padding: 2rem;
+  box-shadow: 2px 1px 25px -6px rgba(199, 199, 199, 1);
+}
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+.text-primary {
+  font-weight: bold;
+}
+.ans-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.text-question {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+.selected {
+  background-color: var(--primary-color);
+}
+.button-answer {
+  border-radius: 10px;
+  padding: 1rem;
+  border: none;
+  font-size: 1rem;
+}

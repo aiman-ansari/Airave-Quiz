@@ -7,11 +7,11 @@ html {
 }
 .app-container {
   display: flex;
-  flex-direction: column;
   margin-top: 4rem;
   padding: 1rem 7rem;
   justify-content: center;
   position: relative;
+  width: 100vw;
   align-items: center;
 }
 
