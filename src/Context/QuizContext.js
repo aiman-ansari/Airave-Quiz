@@ -20,7 +20,6 @@ const QuizProvider = ({ children }) => {
     const data = await getAllQuizes();
     setQuiz(data.docs.map((doc) => ({ ...doc.data() })));
   };
-  console.log(quiz);
   return (
     <QuizContext.Provider value={{ quiz }}>{children}</QuizContext.Provider>
   );

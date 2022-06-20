@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext";
 import { Profile } from "../Profile/Profile";
 import "./Header.css";
 
 export const Header = () => {
+  const {
+    state: { isAuthenticated, user },
+  } = useAuth();
   return (
     <nav>
       <ul>
@@ -16,11 +20,13 @@ export const Header = () => {
 
       <div>
         <div className='profile'>
-          <img
-            className='avatar avatar-xsm'
-            src='https://avatarfiles.alphacoders.com/715/71560.jpg'
-            alt='profile pic'
-          />
+          {isAuthenticated ? (
+            <div class='avatar avatar-xsm avatar-green flex-align-center'>
+              {user.charAt(0).toUpperCase()}
+            </div>
+          ) : (
+            <i className='bi bi-person-fill'></i>
+          )}
 
           <div className='profile-content'>
             <Profile />

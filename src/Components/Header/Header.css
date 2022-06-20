@@ -86,6 +86,9 @@ input::placeholder {
 .profile:hover .profile-content {
   visibility: visible;
 }
+.bi {
+  color: var(--text-gray-dark);
+}
 @media screen and (max-width: 500px) {
   .menu {
     display: block;
