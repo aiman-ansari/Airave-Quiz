@@ -65,26 +65,24 @@ export const QuizPage = () => {
             {QuizById[0].questions[currentQuizCount].questionText}
           </div>
           <div className='ans-container'>
-            {QuizById[0].questions[currentQuizCount].answer.map(
-              (item, index) => (
-                <button
-                  key={index}
-                  className={`button-answer width-100 ${handleChecked(item)}`}
-                  onClick={() => {
-                    handleQuizs(
-                      QuizById[0].questions[currentQuizCount].correctAns,
-                      item
-                    );
-                    dispatch({
-                      type: "CHECKED",
-                      payload: item,
-                    });
-                  }}
-                >
-                  {item}
-                </button>
-              )
-            )}
+            {QuizById[0].questions[currentQuizCount].answer.map((item) => (
+              <button
+                key={item}
+                className={`button-answer width-100 ${handleChecked(item)}`}
+                onClick={() => {
+                  handleQuizs(
+                    QuizById[0].questions[currentQuizCount].correctAns,
+                    item
+                  );
+                  dispatch({
+                    type: "CHECKED",
+                    payload: item,
+                  });
+                }}
+              >
+                {item}
+              </button>
+            ))}
           </div>
         </div>
       ) : (

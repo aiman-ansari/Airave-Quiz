@@ -6,7 +6,7 @@ import {
   useReducer,
 } from "react";
 import { quizReducer } from "../Reducer/quizReducer";
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 const QuizContext = createContext();
 
