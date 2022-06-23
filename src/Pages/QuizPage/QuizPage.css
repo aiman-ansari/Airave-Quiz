@@ -23,6 +23,7 @@
 .selected {
   background-color: var(--primary-color);
 }
+
 .button-answer {
   border-radius: 10px;
   padding: 1rem;

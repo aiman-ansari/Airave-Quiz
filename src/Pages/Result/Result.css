@@ -1,0 +1,25 @@
+:root {
+  --wrong: rgb(251, 61, 61);
+  --correct: rgb(133, 255, 145);
+}
+.result-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.answer-container > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.answer-container button {
+  padding: 12px;
+}
+.correct {
+  background-color: var(--correct);
+}
+.wrong {
+  background-color: var(--wrong);
+}

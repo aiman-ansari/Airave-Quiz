@@ -1,7 +1,9 @@
 import { Link, useParams } from "react-router-dom";
+import { useQuiz } from "../../Context/QuizContext";
 import "./Rules.css";
 export const Rules = () => {
   const { id } = useParams();
+  const { setCurrentQuiz } = useQuiz();
   return (
     <div className='rules-container'>
       <div className='bold-text flex-align-center'>Rules to follow</div>
@@ -41,7 +43,18 @@ export const Rules = () => {
 
       <div className='flex-align-center mt-1'>
         <Link to={`/${id}`}>
-          <button className='btn btn-primary'>Start Quiz</button>
+          <button
+            className='btn btn-primary'
+            onClick={() => {
+              setCurrentQuiz({
+                getSelectedAnswer: [],
+                getQuiz: [],
+                score: 0,
+              });
+            }}
+          >
+            Start Quiz
+          </button>
         </Link>
       </div>
     </div>
