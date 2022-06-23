@@ -21,7 +21,7 @@ export const Result = () => {
         <>
           <div className='bold-text'>Result page</div>
           <h4 className='text-primary'>
-            Score :<span className='text-dark'>{score}</span>
+            Score :<span className='text-dark'>{score}/25</span>
           </h4>
           <Link to='/'>
             <button className='btn btn-outline-primary'>Play Again</button>
