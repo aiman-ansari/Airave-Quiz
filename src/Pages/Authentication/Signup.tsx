@@ -1,60 +1,51 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
-import { auth } from "../../firebase";
-import { updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 
-export const Login = () => {
-  const navigate = useNavigate();
+export const SignUp = () => {
+  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { handleLogin } = useAuth();
-  const [error, setError] = useState(false);
+  const { handleSingup } = useAuth();
   const [message, setMessage] = useState("");
-  // type userInfo = {
-  //   email: string;
-  //   password: any;
-  // };
-  const test =
-    // :userInfo
-    {
-      email: "test@gmail.com",
-      password: "test1234",
-    };
-
-  auth.onAuthStateChanged((user) => {
-    if (user !== null) {
-      if (user.email === test.email) {
-        updateProfile(user, {
-          displayName: "test",
-        });
-      }
-    }
-  });
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
   const handleSubmit = async () => {
-    if (email && password) {
-      setError(false);
-      try {
-        await handleLogin(email, password);
-        navigate("/");
-      } catch (err) {
+    if (firstName && email && password) {
+      if (password.length > 6) {
+        setError(false);
+        try {
+          await handleSingup(email, password, firstName);
+          navigate("/login");
+        } catch (err: any) {
+          setError(true);
+          setMessage(err.message);
+        }
+      } else {
         setError(true);
-        setMessage(err.message);
+        setMessage("Password should be greater than 6 character");
       }
     } else {
       setError(true);
       setMessage("Please fill all the fields");
     }
   };
-  const handleTest = () => {
-    setEmail(test.email);
-    setPassword(test.password);
-  };
+
   return (
     <div className='auth-container'>
       <div className='form'>
-        <span className='bold-text'>Login</span>
+        <span className='bold-text'>Sign up</span>
+        <div className='input-with-icons '>
+          <i className='bi bi-person-fill input-icon'></i>
+          <input
+            type='text'
+            placeholder='Enter your name'
+            className='icon-input'
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </div>
         <div className='input-with-icons '>
           <i className='bi bi-envelope-fill input-icon'></i>
           <input
@@ -78,27 +69,20 @@ export const Login = () => {
         {error === true && (
           <div className='alert alert-danger mb-1'>{message}</div>
         )}
-
         <div className='btn-container'>
           <button
             className='btn btn-outline-primary  width-100'
             onClick={() => handleSubmit()}
           >
-            Login
+            Signup
           </button>
-          <button
-            className='btn btn-outline-primary'
-            onClick={() => handleTest()}
-          >
-            Test Login
-          </button>
-          <div className='link-primary' onClick={() => navigate("/signup")}>
-            New user? Create account
+          <div className='link-primary' onClick={() => navigate("/login")}>
+            Already have an account ?
           </div>
         </div>
       </div>
       <div className='login-image'>
-        <img src='/svg/Mobile login-pana.svg' />
+        <img src='/svg/Mobile login-cuate.svg' />
       </div>
     </div>
   );
