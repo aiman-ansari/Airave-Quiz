@@ -3,7 +3,7 @@ import { useAuth } from "../../Context/AuthContext";
 import "./Profile.css";
 export const Profile = () => {
   const {
-    state: { token, user, isAuthenticated },
+    state: { user, isAuthenticated },
     dispatch,
   } = useAuth();
   const logout = () => {

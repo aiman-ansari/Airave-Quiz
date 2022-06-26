@@ -6,18 +6,23 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { authReducer } from "../Reducer/authReducer";
+import { initialStateType } from "./initialStateType";
 
-const initialState = {
+const initialState: initialStateType = {
   isAuthenticated: localStorage.getItem("token") ? true : false,
   token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
   user: localStorage.getItem("user") ? localStorage.getItem("user") : null,
 };
 
-const AuthContext = createContext();
+const AuthContext = createContext<any>({} as any);
 const useAuth = () => useContext(AuthContext);
 
-const AuthProvider = ({ children }) => {
-  const handleSingup = async (email, password, username) => {
+const AuthProvider = ({ children }: any) => {
+  const handleSingup = async (
+    email: string,
+    password: any,
+    username: string
+  ) => {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     updateProfile(res.user, {
       displayName: username,
@@ -29,17 +34,17 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem("token", res.user.uid);
   };
 
-  const handleLogin = async (email, password) => {
+  const handleLogin = async (email: string, password: string) => {
     const res = await signInWithEmailAndPassword(auth, email, password);
     localStorage.setItem("token", res.user.uid);
-    localStorage.setItem("user", res.user.displayName);
+    localStorage.setItem("user", res.user.displayName ?? "");
     dispatch({
       type: "login",
       payload: res.user,
     });
   };
-
   const [state, dispatch] = useReducer(authReducer, initialState);
+
   return (
     <AuthContext.Provider
       value={{ handleSingup, handleLogin, state, dispatch }}

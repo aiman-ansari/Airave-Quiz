@@ -80,7 +80,7 @@ input::placeholder {
   position: absolute;
   visibility: hidden;
   margin-right: 10rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   padding: 10px;
 }
 .profile:hover .profile-content {

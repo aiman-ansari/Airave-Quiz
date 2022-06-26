@@ -21,7 +21,7 @@ export const Header = () => {
       <div>
         <div className='profile'>
           {isAuthenticated ? (
-            <div class='avatar avatar-xsm avatar-green flex-align-center'>
+            <div className='avatar avatar-xsm avatar-green flex-align-center'>
               {user.charAt(0).toUpperCase()}
             </div>
           ) : (
