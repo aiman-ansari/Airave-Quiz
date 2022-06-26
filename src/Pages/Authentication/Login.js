@@ -12,15 +12,24 @@ export const Login = () => {
   const { handleLogin } = useAuth();
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
-  const test = {
-    email: "test@gmail.com",
-    password: "test1234",
-  };
+  // type userInfo = {
+  //   email: string;
+  //   password: any;
+  // };
+  const test =
+    // :userInfo
+    {
+      email: "test@gmail.com",
+      password: "test1234",
+    };
+
   auth.onAuthStateChanged((user) => {
-    if (user.email === test.email) {
-      updateProfile(user, {
-        displayName: "test",
-      });
+    if (user !== null) {
+      if (user.email === test.email) {
+        updateProfile(user, {
+          displayName: "test",
+        });
+      }
     }
   });
   const handleSubmit = async () => {
@@ -44,7 +53,7 @@ export const Login = () => {
   };
   return (
     <div className='auth-container'>
-      <div class='form'>
+      <div className='form'>
         <span className='bold-text'>Login</span>
         <div className='input-with-icons '>
           <i className='bi bi-envelope-fill input-icon'></i>
@@ -66,11 +75,13 @@ export const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        {error === true && <div class='alert alert-danger mb-1'>{message}</div>}
+        {error === true && (
+          <div className='alert alert-danger mb-1'>{message}</div>
+        )}
 
         <div className='btn-container'>
           <button
-            class='btn btn-outline-primary  width-100'
+            className='btn btn-outline-primary  width-100'
             onClick={() => handleSubmit()}
           >
             Login

@@ -8,7 +8,7 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { handleSingup } = useAuth();
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = async () => {
@@ -34,47 +34,49 @@ export const SignUp = () => {
 
   return (
     <div className='auth-container'>
-      <div class='form'>
+      <div className='form'>
         <span className='bold-text'>Sign up</span>
-        <div class='input-with-icons '>
-          <i class='bi bi-person-fill input-icon'></i>
+        <div className='input-with-icons '>
+          <i className='bi bi-person-fill input-icon'></i>
           <input
             type='text'
             placeholder='Enter your name'
-            class='icon-input'
+            className='icon-input'
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
         </div>
-        <div class='input-with-icons '>
-          <i class='bi bi-envelope-fill input-icon'></i>
+        <div className='input-with-icons '>
+          <i className='bi bi-envelope-fill input-icon'></i>
           <input
             type='email'
             placeholder='Enter your Email'
-            class='icon-input'
+            className='icon-input'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div class='input-with-icons '>
-          <i class='bi bi-lock-fill input-icon'></i>
+        <div className='input-with-icons '>
+          <i className='bi bi-lock-fill input-icon'></i>
           <input
             type='password'
             placeholder='Enter your Password'
-            class='icon-input'
+            className='icon-input'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        {error === true && <div class='alert alert-danger mb-1'>{message}</div>}
-        <div class='btn-container'>
+        {error === true && (
+          <div className='alert alert-danger mb-1'>{message}</div>
+        )}
+        <div className='btn-container'>
           <button
-            class='btn btn-outline-primary  width-100'
+            className='btn btn-outline-primary  width-100'
             onClick={() => handleSubmit()}
           >
             Signup
           </button>
-          <div class='link-primary' onClick={() => navigate("/login")}>
+          <div className='link-primary' onClick={() => navigate("/login")}>
             Already have an account ?
           </div>
         </div>
