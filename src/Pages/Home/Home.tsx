@@ -1,21 +1,21 @@
 import { Link } from "react-router-dom";
 import { useQuiz } from "../../Context/QuizContext";
 import { useAuth } from "../../Context/AuthContext";
+import { QuizFromFirebase } from "../../Context/QuizContextType";
 import "./Home.css";
 export const Home = () => {
-  const { quiz } = useQuiz();
+  const { state } = useQuiz();
+  const { allQuizes } = state;
   const {
     state: { isAuthenticated },
   } = useAuth();
   return (
     <div className='container'>
       <div className='bold-text'>All Categories</div>
-      {quiz === undefined ? (
-        <span>Loading...</span>
-      ) : (
+      {allQuizes ? (
         <div className='category-container'>
-          {quiz.map((item, index) => (
-            <div className='category-card' key={index}>
+          {allQuizes?.map((item: QuizFromFirebase) => (
+            <div className='category-card' key={item.title}>
               <img src={item.image} />
               <div>{item.title}</div>
               {isAuthenticated ? (
@@ -30,6 +30,8 @@ export const Home = () => {
             </div>
           ))}
         </div>
+      ) : (
+        <span>Loading...</span>
       )}
     </div>
   );
