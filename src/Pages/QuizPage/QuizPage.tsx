@@ -1,16 +1,34 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuiz } from "../../Context/QuizContext";
+import { Questions, QuizFromFirebase } from "../../Context/QuizContextType";
 import "./QuizPage.css";
 export const QuizPage = () => {
-  const { quiz, handleQuiz, state, dispatch } = useQuiz();
+  const { handleQuiz, state, dispatch, select } = useQuiz();
+  const navigate = useNavigate();
+  const { allQuizes, selected } = state;
   const [currentQuizCount, setCurrentQuizCount] = useState(0);
   const [timer, setTimer] = useState(10);
   const { id } = useParams();
-  const QuizById = quiz.filter((item) => item.title === id);
-  const handleChecked = (item) => {
-    if (item === state.active) {
+  const QuizById = allQuizes.filter(
+    (item: QuizFromFirebase) => item.title === id
+  );
+  // type selectedOptionType = {
+  //   select: string,
+  //   setSelect : React.SetStateAction<string> => void
+  // }
+  // const [select, setSelect] = useState<string | boolean>();
+  const handleChecked = (option: string, answer: string[]) => {
+    if (
+      select === option &&
+      select === QuizById[0].questions[currentQuizCount].correctAns
+    ) {
       return "selected";
+    } else if (
+      select === option &&
+      select !== QuizById[0].questions[currentQuizCount].correctAns
+    ) {
+      return "wrong";
     }
   };
   useEffect(() => {
@@ -19,33 +37,41 @@ export const QuizPage = () => {
   const settingTimer = () => {
     const nextQuestion = currentQuizCount + 1;
 
-    const time = setTimeout(() => {
-      setTimer(timer - 1);
-      if (timer === 0) {
-        setTimer(0);
-        if (nextQuestion < QuizById[0].questions.length) {
-          setCurrentQuizCount(nextQuestion);
-          setTimer(10);
-        }
-      }
-    }, 1000);
-    return () => {
-      clearInterval(time);
-    };
+    // const time = setTimeout(() => {
+    //   setTimer(timer - 1);
+    // }, 1000);
+
+    // if (timer === 0) {
+    //   setTimer(0);
+
+    //   if (nextQuestion < QuizById[0].questions.length) {
+    //     setCurrentQuizCount(nextQuestion);
+    //     setTimer(10);
+    //   } else {
+    //     navigate("/result");
+    //   }
+    // }
+    // return () => {
+    //   clearInterval(time);
+    // };
   };
-  const handleQuizs = (correct, item) => {
-    handleQuiz(correct, item);
+
+  const handleQuizs = (
+    correctOption: string,
+    selectedOption: string,
+    quiz: Questions
+  ) => {
+    handleQuiz(correctOption, selectedOption, quiz);
+    const nextQuestion = currentQuizCount + 1;
 
     setTimeout(() => {
-      const nextQuestion = currentQuizCount + 1;
       if (nextQuestion < QuizById[0].questions.length) {
         setCurrentQuizCount(nextQuestion);
       } else {
-        console.log("stop");
+        navigate("/result");
       }
     }, 2000);
   };
-
   return (
     <>
       {QuizById !== undefined && QuizById.length > 0 ? (
@@ -68,11 +94,18 @@ export const QuizPage = () => {
             {QuizById[0].questions[currentQuizCount].answer.map((item) => (
               <button
                 key={item}
-                className={`button-answer width-100 ${handleChecked(item)}`}
+                className={`button-answer width-100 ${
+                  select &&
+                  handleChecked(
+                    item,
+                    QuizById[0].questions[currentQuizCount].answer
+                  )
+                }`}
                 onClick={() => {
                   handleQuizs(
                     QuizById[0].questions[currentQuizCount].correctAns,
-                    item
+                    item,
+                    QuizById[0].questions[currentQuizCount]
                   );
                   dispatch({
                     type: "CHECKED",

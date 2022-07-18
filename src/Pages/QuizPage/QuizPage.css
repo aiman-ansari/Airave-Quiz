@@ -29,3 +29,6 @@
   border: none;
   font-size: 1rem;
 }
+.wrong {
+  background-color: pink;
+}

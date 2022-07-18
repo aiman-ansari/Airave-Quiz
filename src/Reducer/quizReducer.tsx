@@ -22,7 +22,11 @@ export function quizReducer(
         ...state,
         allQuizes: action.payload,
       };
-
+    case "CHECKED":
+      return {
+        ...state,
+        selected: action.payload,
+      };
     default:
       return state;
   }

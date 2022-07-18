@@ -1,11 +1,11 @@
-import { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 import { auth } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { authReducer } from "../Reducer/authReducer";
+import { Action, authReducer } from "../Reducer/authReducer";
 import { initialStateType } from "./initialStateType";
 
 const initialState: initialStateType = {
@@ -13,14 +13,24 @@ const initialState: initialStateType = {
   token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
   user: localStorage.getItem("user") ? localStorage.getItem("user") : null,
 };
+type authContextType = {
+  handleSingup: (
+    email: string,
+    password: string,
+    username: string
+  ) => Promise<void>;
+  handleLogin: (email: string, password: string) => Promise<void>;
+  state: initialStateType;
 
-const AuthContext = createContext<any>({} as any);
-const useAuth = () => useContext(AuthContext);
+  dispatch: React.Dispatch<Action>;
+};
+const AuthContext = createContext<authContextType | null>(null);
+const useAuth = () => useContext(AuthContext) as authContextType;
 
-const AuthProvider = ({ children }: any) => {
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const handleSingup = async (
     email: string,
-    password: any,
+    password: string,
     username: string
   ) => {
     const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -29,7 +39,10 @@ const AuthProvider = ({ children }: any) => {
     });
     dispatch({
       type: "signup",
-      payload: res.user,
+      payload: {
+        token: res.user.uid,
+        user: res.user.displayName,
+      },
     });
     localStorage.setItem("token", res.user.uid);
   };
@@ -40,7 +53,11 @@ const AuthProvider = ({ children }: any) => {
     localStorage.setItem("user", res.user.displayName ?? "");
     dispatch({
       type: "login",
-      payload: res.user,
+      payload: {
+        token: res.user.uid,
+        user: res.user.displayName,
+        isAuthenticated: false,
+      },
     });
   };
   const [state, dispatch] = useReducer(authReducer, initialState);

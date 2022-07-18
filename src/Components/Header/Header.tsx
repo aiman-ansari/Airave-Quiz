@@ -22,7 +22,7 @@ export const Header = () => {
         <div className='profile'>
           {isAuthenticated ? (
             <div className='avatar avatar-xsm avatar-green flex-align-center'>
-              {user.charAt(0).toUpperCase()}
+              {user?.charAt(0).toUpperCase()}
             </div>
           ) : (
             <i className='bi bi-person-fill'></i>

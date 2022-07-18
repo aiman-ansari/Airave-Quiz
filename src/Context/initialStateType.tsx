@@ -1,5 +1,5 @@
 export type initialStateType = {
   isAuthenticated: boolean;
-  token: any;
+  token: string | null;
   user: string | null;
 };
