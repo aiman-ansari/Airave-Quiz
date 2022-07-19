@@ -1,7 +1,7 @@
 import {
   initialQuizStateType,
   QuizFromFirebase,
-} from "../Context/QuizContextType";
+} from "../Context/Types/QuizContextType";
 
 type Action =
   | {

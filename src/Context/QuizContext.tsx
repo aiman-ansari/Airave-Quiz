@@ -14,7 +14,7 @@ import {
   initialQuizStateType,
   getQuiz,
   Questions,
-} from "./QuizContextType";
+} from "../Context/Types/QuizContextType";
 
 const QuizContext = createContext<QuizContextType | null>(null);
 

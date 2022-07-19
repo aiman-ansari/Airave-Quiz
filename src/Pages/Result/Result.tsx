@@ -1,7 +1,7 @@
 import { useQuiz } from "../../Context/QuizContext";
 import { Link } from "react-router-dom";
 import "./Result.css";
-import { Questions } from "../../Context/QuizContextType";
+import { Questions } from "../../Context/Types/QuizContextType";
 import "../QuizPage/QuizPage.css";
 export const Result = () => {
   const { currentQuiz } = useQuiz();

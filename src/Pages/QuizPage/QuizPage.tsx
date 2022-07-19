@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuiz } from "../../Context/QuizContext";
-import { Questions, QuizFromFirebase } from "../../Context/QuizContextType";
+import {
+  Questions,
+  QuizFromFirebase,
+} from "../../Context/Types/QuizContextType";
 import "./QuizPage.css";
 export const QuizPage = () => {
   const { handleQuiz, state, dispatch, select } = useQuiz();
