@@ -13,10 +13,8 @@ import {
   attemptQuiz,
   initialQuizStateType,
   getQuiz,
-  QuizFromFirebase,
   Questions,
 } from "./QuizContextType";
-import { stat } from "fs";
 
 const QuizContext = createContext<QuizContextType | null>(null);
 
@@ -44,12 +42,14 @@ const QuizProvider = ({ children }: { children: React.ReactNode }) => {
     getQuizes();
   }, []);
   const [select, setSelect] = useState<string | boolean>();
-  const [currentQuiz, setCurrentQuiz] = useState<attemptQuiz>({
+  const initialState: attemptQuiz = {
     getSelectedOption: [],
     score: 0,
     getAttemptQuiz: [],
-  });
+  };
+  const [currentQuiz, setCurrentQuiz] = useState(initialState);
 
+  const clearAllData = () => setCurrentQuiz({ ...initialState });
   const handleQuiz = (
     correctOption: string,
     selectedOption: string,
@@ -82,10 +82,16 @@ const QuizProvider = ({ children }: { children: React.ReactNode }) => {
     selected: "",
   };
   const [state, dispatch] = useReducer(quizReducer, initialQuizState);
-  console.log(state);
   return (
     <QuizContext.Provider
-      value={{ currentQuiz, handleQuiz, state, dispatch, select }}
+      value={{
+        currentQuiz,
+        handleQuiz,
+        state,
+        dispatch,
+        select,
+        clearAllData,
+      }}
     >
       {children}
     </QuizContext.Provider>

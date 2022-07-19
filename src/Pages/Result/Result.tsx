@@ -14,7 +14,6 @@ export const Result = () => {
       return "wrong";
     }
   };
-  console.log(currentQuiz);
   return (
     <div className='result-container'>
       {getAttemptQuiz.length > 0 ? (
@@ -44,7 +43,11 @@ export const Result = () => {
           ))}
         </>
       ) : (
-        <h4>Go back to home page</h4>
+        <Link to='/'>
+          <button className='btn btn-outline-primary w-100'>
+            Back To Home
+          </button>
+        </Link>
       )}
     </div>
   );

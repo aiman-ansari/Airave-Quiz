@@ -3,6 +3,7 @@ export type QuizContextType = {
   state: initialQuizStateType;
   dispatch: React.Dispatch<any>;
   select?: string | boolean;
+  clearAllData: () => void;
   handleQuiz: (correct: string, item: string, quiz: Questions) => void;
 };
 

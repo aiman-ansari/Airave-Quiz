@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuiz } from "../../Context/QuizContext";
 import { Questions, QuizFromFirebase } from "../../Context/QuizContextType";
@@ -6,54 +6,16 @@ import "./QuizPage.css";
 export const QuizPage = () => {
   const { handleQuiz, state, dispatch, select } = useQuiz();
   const navigate = useNavigate();
-  const { allQuizes, selected } = state;
+  const { allQuizes } = state;
   const [currentQuizCount, setCurrentQuizCount] = useState(0);
-  const [timer, setTimer] = useState(10);
   const { id } = useParams();
-  const QuizById = allQuizes.filter(
+  const SelectedQuizCategory = allQuizes.filter(
     (item: QuizFromFirebase) => item.title === id
   );
-  // type selectedOptionType = {
-  //   select: string,
-  //   setSelect : React.SetStateAction<string> => void
-  // }
-  // const [select, setSelect] = useState<string | boolean>();
-  const handleChecked = (option: string, answer: string[]) => {
-    if (
-      select === option &&
-      select === QuizById[0].questions[currentQuizCount].correctAns
-    ) {
+  const handleChecked = (option: string) => {
+    if (select === option) {
       return "selected";
-    } else if (
-      select === option &&
-      select !== QuizById[0].questions[currentQuizCount].correctAns
-    ) {
-      return "wrong";
     }
-  };
-  useEffect(() => {
-    settingTimer();
-  });
-  const settingTimer = () => {
-    const nextQuestion = currentQuizCount + 1;
-
-    // const time = setTimeout(() => {
-    //   setTimer(timer - 1);
-    // }, 1000);
-
-    // if (timer === 0) {
-    //   setTimer(0);
-
-    //   if (nextQuestion < QuizById[0].questions.length) {
-    //     setCurrentQuizCount(nextQuestion);
-    //     setTimer(10);
-    //   } else {
-    //     navigate("/result");
-    //   }
-    // }
-    // return () => {
-    //   clearInterval(time);
-    // };
   };
 
   const handleQuizs = (
@@ -65,7 +27,7 @@ export const QuizPage = () => {
     const nextQuestion = currentQuizCount + 1;
 
     setTimeout(() => {
-      if (nextQuestion < QuizById[0].questions.length) {
+      if (nextQuestion < SelectedQuizCategory[0].questions.length) {
         setCurrentQuizCount(nextQuestion);
       } else {
         navigate("/result");
@@ -74,9 +36,11 @@ export const QuizPage = () => {
   };
   return (
     <>
-      {QuizById !== undefined && QuizById.length > 0 ? (
+      {SelectedQuizCategory !== undefined && SelectedQuizCategory.length > 0 ? (
         <div className='quiz-container'>
-          <div className='bold-text flex-align-center'>{QuizById[0].title}</div>
+          <div className='bold-text flex-align-center'>
+            {SelectedQuizCategory[0].title}
+          </div>
           <div className='quiz-header'>
             <span className='text-primary'>
               Question:
@@ -84,38 +48,36 @@ export const QuizPage = () => {
             </span>
             <span className='text-primary'>
               Timer:
-              <span className='text-dark'>{timer}sec</span>
+              <span className='text-dark'>sec</span>
             </span>
           </div>
           <div className='text-question'>
-            {QuizById[0].questions[currentQuizCount].questionText}
+            {SelectedQuizCategory[0].questions[currentQuizCount].questionText}
           </div>
           <div className='ans-container'>
-            {QuizById[0].questions[currentQuizCount].answer.map((item) => (
-              <button
-                key={item}
-                className={`button-answer width-100 ${
-                  select &&
-                  handleChecked(
-                    item,
-                    QuizById[0].questions[currentQuizCount].answer
-                  )
-                }`}
-                onClick={() => {
-                  handleQuizs(
-                    QuizById[0].questions[currentQuizCount].correctAns,
-                    item,
-                    QuizById[0].questions[currentQuizCount]
-                  );
-                  dispatch({
-                    type: "CHECKED",
-                    payload: item,
-                  });
-                }}
-              >
-                {item}
-              </button>
-            ))}
+            {SelectedQuizCategory[0].questions[currentQuizCount].answer.map(
+              (item) => (
+                <button
+                  key={item}
+                  className={`button-answer width-100
+                 ${select && handleChecked(item)}`}
+                  onClick={() => {
+                    handleQuizs(
+                      SelectedQuizCategory[0].questions[currentQuizCount]
+                        .correctAns,
+                      item,
+                      SelectedQuizCategory[0].questions[currentQuizCount]
+                    );
+                    dispatch({
+                      type: "CHECKED",
+                      payload: item,
+                    });
+                  }}
+                >
+                  {item}
+                </button>
+              )
+            )}
           </div>
         </div>
       ) : (

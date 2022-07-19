@@ -31,16 +31,3 @@ export function quizReducer(
       return state;
   }
 }
-
-// export const quizReducer = (state: string[], action: Action) => {
-//   switch (action.type) {
-//     case "CHECKED":
-//       return {
-//         ...state,
-//         active: action.payload,
-//       };
-
-//     default:
-//       break;
-//   }
-// };
