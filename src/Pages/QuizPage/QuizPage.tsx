@@ -46,10 +46,6 @@ export const QuizPage = () => {
               Question:
               <span className='text-dark'>{currentQuizCount + 1}/5</span>
             </span>
-            <span className='text-primary'>
-              Timer:
-              <span className='text-dark'>sec</span>
-            </span>
           </div>
           <div className='text-question'>
             {SelectedQuizCategory[0].questions[currentQuizCount].questionText}

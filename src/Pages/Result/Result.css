@@ -1,6 +1,6 @@
 :root {
   --wrong: rgb(251, 61, 61);
-  --correct: rgb(133, 255, 145);
+  --correct: rgb(98, 250, 113);
 }
 .result-container {
   display: flex;
@@ -22,4 +22,10 @@
 }
 .wrong {
   background-color: var(--wrong);
+}
+@media screen and (max-width: 500px) {
+  .quiz-container {
+    padding: 2rem;
+    width: 100%;
+  }
 }

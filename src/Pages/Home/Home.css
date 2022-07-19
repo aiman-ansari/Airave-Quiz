@@ -5,6 +5,7 @@
   width: 80vw;
   flex-direction: column;
 }
+
 .bold-text {
   font-size: 2rem;
   margin: 1rem;
@@ -14,6 +15,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  justify-content: center;
 }
 .category-card {
   width: 20rem;
