@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
+import { useTheme } from "../../Context/ThemeContext";
 import { Profile } from "../Profile/Profile";
 import "./Header.css";
 
@@ -7,6 +8,8 @@ export const Header = () => {
   const {
     state: { isAuthenticated, user },
   } = useAuth();
+  const { changeThemeHandler, theme } = useTheme();
+
   return (
     <nav>
       <ul>
@@ -16,6 +19,13 @@ export const Header = () => {
       </ul>
       <div>
         <input type='text' placeholder='Search here' className='search-input' />
+      </div>
+      <div className='text-dark' onClick={() => changeThemeHandler()}>
+        {theme === "light" ? (
+          <i className='bi bi-moon'></i>
+        ) : (
+          <i className='bi bi-brightness-high'></i>
+        )}
       </div>
 
       <div>
@@ -27,7 +37,6 @@ export const Header = () => {
           ) : (
             <i className='bi bi-person-fill'></i>
           )}
-
           <div className='profile-content'>
             <Profile />
           </div>

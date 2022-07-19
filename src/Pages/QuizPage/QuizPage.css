@@ -2,6 +2,7 @@
   width: 35rem;
   padding: 2rem;
   box-shadow: 2px 1px 25px -6px rgba(199, 199, 199, 1);
+  border-radius: 10px;
 }
 .quiz-header {
   display: flex;
@@ -28,4 +29,18 @@
   padding: 1rem;
   border: none;
   font-size: 1rem;
+}
+#dark .quiz-container,
+#dark .button-answer {
+  color: var(--dark-text-color);
+}
+#dark .quiz-container {
+  box-shadow: 0px 10px 14px -5px rgb(54, 54, 54);
+  background-color: var(--dark-bg-container);
+}
+#dark .button-answer {
+  background-color: rgb(18, 18, 18);
+}
+#dark .selected {
+  background-color: var(--primary-color);
 }

@@ -23,6 +23,15 @@
 .wrong {
   background-color: var(--wrong);
 }
+#dark .result-container,
+#dark .text-gray,
+#dark .text-dark {
+  color: var(--dark-text-color);
+}
+#dark .btn-outline-primary {
+  background-color: transparent;
+}
+
 @media screen and (max-width: 500px) {
   .quiz-container {
     padding: 2rem;

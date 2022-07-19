@@ -1,9 +1,21 @@
+:root {
+  --dark-text-color: rgb(239, 239, 239);
+  --dark-bg-color: rgb(35, 35, 35);
+  --dark-bg-container: rgb(30, 30, 30);
+  --dark-gray-color: rgb(223, 223, 223);
+}
 html {
   background-color: #fefefe;
 }
 .app {
   display: flex;
   height: 100%;
+}
+#light {
+  background-color: #fefefe;
+}
+#dark {
+  background-color: rgb(43, 43, 43);
 }
 .app-container {
   display: flex;

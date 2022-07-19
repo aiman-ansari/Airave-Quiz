@@ -89,6 +89,17 @@ input::placeholder {
 .bi {
   color: var(--text-gray-dark);
 }
+
+#dark nav {
+  background-color: var(--dark-bg-color);
+}
+#dark .search-input {
+  background-color: var(--text-gray-dark);
+  color: var(--dark-text-color);
+}
+#dark .bi-brightness-high {
+  color: var(--dark-text-color);
+}
 @media screen and (max-width: 500px) {
   .menu {
     display: block;

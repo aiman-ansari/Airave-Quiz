@@ -5,6 +5,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { QuizProvider } from "./Context/QuizContext";
 import { AuthProvider } from "./Context/AuthContext";
+import { ThemeProvider } from "./Context/ThemeContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
@@ -12,7 +13,9 @@ root.render(
     <BrowserRouter>
       <QuizProvider>
         <AuthProvider>
-          <App />
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
         </AuthProvider>
       </QuizProvider>
     </BrowserRouter>

@@ -15,3 +15,9 @@
   padding-top: 5px;
   color: var(--text-gray-dark);
 }
+#dark .profile-container {
+  background-color: var(--dark-bg-color);
+}
+#dark .text-small {
+  color: gray;
+}
