@@ -1,4 +1,4 @@
-import { initialStateType } from "../Context/initialStateType";
+import { initialStateType } from "../Context/Types/AuthContextType";
 
 export type Action =
   | {

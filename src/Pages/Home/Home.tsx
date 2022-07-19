@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useQuiz } from "../../Context/QuizContext";
 import { useAuth } from "../../Context/AuthContext";
-import { QuizFromFirebase } from "../../Context/QuizContextType";
+import { QuizFromFirebase } from "../../Context/Types/QuizContextType";
 import "./Home.css";
 export const Home = () => {
   const { state } = useQuiz();
