@@ -4,6 +4,8 @@ import { useAuth } from "../../Context/AuthContext";
 import { auth } from "../../firebase";
 import { updateProfile } from "firebase/auth";
 import "./Auth.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +16,7 @@ export const Login = () => {
   const [message, setMessage] = useState("");
   type testUser = {
     email: string;
-    password: any;
+    password: string;
   };
   const test: testUser = {
     email: "test@gmail.com",
@@ -35,7 +37,9 @@ export const Login = () => {
       setError(false);
       try {
         await handleLogin(email, password);
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       } catch (err: any) {
         setError(true);
         setMessage(err.message);
@@ -98,6 +102,7 @@ export const Login = () => {
       <div className='login-image'>
         <img src='/svg/Mobile login-pana.svg' />
       </div>
+      <ToastContainer />
     </div>
   );
 };

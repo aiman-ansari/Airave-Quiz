@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { Action, authReducer } from "../Reducer/authReducer";
 import { initialStateType } from "../Context/Types/AuthContextType";
-
+import { toast } from "react-toastify";
 const initialState: initialStateType = {
   isAuthenticated: localStorage.getItem("token") ? true : false,
   token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
@@ -58,6 +58,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         user: res.user.displayName,
         isAuthenticated: false,
       },
+    });
+    toast.info("Logged in successfully", {
+      theme: "colored",
+      autoClose: 2000,
     });
   };
   const [state, dispatch] = useReducer(authReducer, initialState);
