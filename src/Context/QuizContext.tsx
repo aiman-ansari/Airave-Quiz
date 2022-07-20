@@ -72,7 +72,7 @@ const QuizProvider = ({ children }: { children: React.ReactNode }) => {
     } else {
       setCurrentQuiz((prev) => ({
         ...prev,
-        score: prev.score - 3,
+        score: prev.score - 1,
       }));
     }
   };

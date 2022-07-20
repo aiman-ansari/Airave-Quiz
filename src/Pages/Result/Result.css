@@ -20,13 +20,18 @@
 .correct {
   background-color: var(--correct);
 }
-.wrong {
+.wrong,
+#dark .wrong {
   background-color: var(--wrong);
 }
 #dark .result-container,
 #dark .text-gray,
 #dark .text-dark {
   color: var(--dark-text-color);
+}
+#dark .correct {
+  background-color: var(--correct);
+  color: var(--text-gray-dark);
 }
 #dark .btn-outline-primary {
   background-color: transparent;

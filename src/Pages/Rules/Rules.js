@@ -31,7 +31,7 @@ export const Rules = () => {
           <li>
             <i className='bi bi-info-circle-fill '></i>
             <span>
-              There is a negative marking of 3 points for each{" "}
+              There is a negative marking of 1 points for each{" "}
               <span className='text-danger'>wrong answer</span>.
             </span>
           </li>
