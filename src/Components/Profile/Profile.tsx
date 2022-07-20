@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 import "./Profile.css";
 export const Profile = () => {
   const {
@@ -10,6 +12,10 @@ export const Profile = () => {
     localStorage.clear();
     dispatch({
       type: "logout",
+    });
+    toast.info("Logging out...", {
+      theme: "colored",
+      autoClose: 2000,
     });
   };
 
@@ -39,6 +45,7 @@ export const Profile = () => {
           </Link>
         </>
       )}
+      <ToastContainer />
     </div>
   );
 };

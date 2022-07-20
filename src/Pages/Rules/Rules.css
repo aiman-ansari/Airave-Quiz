@@ -16,3 +16,13 @@
   padding: 1rem;
   font-size: 1rem;
 }
+#dark .rules-container,
+#dark .rules ul li .bi {
+  color: var(--dark-text-color);
+}
+
+@media screen and (max-width: 500px) {
+  .rules-container {
+    margin: 1rem;
+  }
+}

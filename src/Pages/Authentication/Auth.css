@@ -50,6 +50,10 @@
   color: var(--primary-color);
   border-bottom: 1px solid var(--primary-color);
 }
+#dark .form,
+#dark .bi {
+  color: var(--dark-gray-color);
+}
 @media screen and (max-width: 500px) {
   .auth-container {
     display: flex;

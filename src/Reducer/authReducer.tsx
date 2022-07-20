@@ -1,35 +1,49 @@
-type Action =
+import { initialStateType } from "../Context/Types/AuthContextType";
+
+export type Action =
   | {
       type: "signup";
-      payload: any;
+      payload: {
+        token: string;
+        user: string | null;
+      };
     }
   | {
       type: "login";
-      payload: any;
+      payload: {
+        token: string;
+        isAuthenticated: boolean;
+        user: string | null;
+      };
     }
   | {
       type: "logout";
     };
 
-export const authReducer = (state: any, action: Action) => {
+export function authReducer(
+  state: initialStateType,
+  action: Action
+): initialStateType {
   switch (action.type) {
     case "signup":
       return {
         ...state,
-        token: action.payload.uid,
-        user: action.payload.displayName,
+        token: action.payload.token,
+        user: action.payload.user,
       };
     case "login":
       return {
         isAuthenticated: true,
-        token: action.payload.uid,
-        user: action.payload.displayName,
+        token: action.payload.token,
+        user: action.payload.user,
       };
     case "logout":
       return {
         isAuthenticated: false,
+        token: null,
+        user: null,
       };
     default:
-      break;
+      return state;
   }
-};
+}

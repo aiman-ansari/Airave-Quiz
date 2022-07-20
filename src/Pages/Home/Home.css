@@ -5,15 +5,18 @@
   width: 80vw;
   flex-direction: column;
 }
+
 .bold-text {
   font-size: 2rem;
   margin: 1rem;
   color: var(--text-gray-dark);
 }
+
 .category-container {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  justify-content: center;
 }
 .category-card {
   width: 20rem;
@@ -37,4 +40,13 @@
   object-fit: fill;
   height: 15rem;
   margin-bottom: 1rem;
+}
+#dark .bold-text {
+  color: var(--dark-text-color);
+}
+#dark .category-card {
+  box-shadow: 0px 10px 14px -5px rgb(54, 54, 54);
+  background-color: var(--dark-bg-color);
+  color: var(--dark-text-color);
+  font-weight: bold;
 }

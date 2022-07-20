@@ -1,7 +1,7 @@
 import {
   initialQuizStateType,
   QuizFromFirebase,
-} from "../Context/QuizContextType";
+} from "../Context/Types/QuizContextType";
 
 type Action =
   | {
@@ -22,21 +22,12 @@ export function quizReducer(
         ...state,
         allQuizes: action.payload,
       };
-
+    case "CHECKED":
+      return {
+        ...state,
+        selected: action.payload,
+      };
     default:
       return state;
   }
 }
-
-// export const quizReducer = (state: string[], action: Action) => {
-//   switch (action.type) {
-//     case "CHECKED":
-//       return {
-//         ...state,
-//         active: action.payload,
-//       };
-
-//     default:
-//       break;
-//   }
-// };

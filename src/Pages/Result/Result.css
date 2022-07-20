@@ -1,0 +1,40 @@
+:root {
+  --wrong: rgb(251, 61, 61);
+  --correct: rgb(98, 250, 113);
+}
+.result-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.answer-container > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.answer-container button {
+  padding: 12px;
+}
+.correct {
+  background-color: var(--correct);
+}
+.wrong {
+  background-color: var(--wrong);
+}
+#dark .result-container,
+#dark .text-gray,
+#dark .text-dark {
+  color: var(--dark-text-color);
+}
+#dark .btn-outline-primary {
+  background-color: transparent;
+}
+
+@media screen and (max-width: 500px) {
+  .quiz-container {
+    padding: 2rem;
+    width: 100%;
+  }
+}
