@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { Login } from "./Pages/Authentication/Login";
 import { SignUp } from "./Pages/Authentication/Signup";
 import { Home } from "./Pages/Home/Home";
+import { PageNotFound } from "./Pages/PageNotFound/PageNotFound";
 import { QuizPage } from "./Pages/QuizPage/QuizPage";
 import { Result } from "./Pages/Result/Result";
 import { Rules } from "./Pages/Rules/Rules";
@@ -15,6 +16,7 @@ export const Routers = () => {
       <Route path='/:id' element={<QuizPage />}></Route>
       <Route path='/rules/:id' element={<Rules />}></Route>
       <Route path='/result' element={<Result />}></Route>
+      <Route path='*' element={<PageNotFound />}></Route>
     </Routes>
   );
 };
