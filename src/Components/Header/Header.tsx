@@ -17,28 +17,30 @@ export const Header = () => {
           <li className='nav-text mr-2 text-accent'>Airave Quiz</li>
         </Link>
       </ul>
-      <div>
+      {/* <div>
         <input type='text' placeholder='Search here' className='search-input' />
-      </div>
-      <div className='text-dark' onClick={() => changeThemeHandler()}>
-        {theme === "light" ? (
-          <i className='bi bi-moon'></i>
-        ) : (
-          <i className='bi bi-brightness-high'></i>
-        )}
-      </div>
-
-      <div>
-        <div className='profile'>
-          {isAuthenticated ? (
-            <div className='avatar avatar-xsm avatar-green flex-align-center'>
-              {user?.charAt(0).toUpperCase()}
-            </div>
+      </div> */}
+      <div className='nav-icons'>
+        <div className='text-dark' onClick={() => changeThemeHandler()}>
+          {theme === "light" ? (
+            <i className='bi bi-moon'></i>
           ) : (
-            <i className='bi bi-person-fill'></i>
+            <i className='bi bi-brightness-high'></i>
           )}
-          <div className='profile-content'>
-            <Profile />
+        </div>
+
+        <div>
+          <div className='profile'>
+            {isAuthenticated ? (
+              <div className='avatar avatar-xsm avatar-green flex-align-center'>
+                {user?.charAt(0).toUpperCase()}
+              </div>
+            ) : (
+              <i className='bi bi-person-fill'></i>
+            )}
+            <div className='profile-content'>
+              <Profile />
+            </div>
           </div>
         </div>
       </div>
