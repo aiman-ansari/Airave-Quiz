@@ -35,7 +35,7 @@ export const QuizPage = () => {
       } else {
         navigate("/result");
       }
-    }, 2000);
+    }, 400);
   };
   return (
     <>
